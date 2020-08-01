@@ -4,17 +4,29 @@ import TextField from '@material-ui/core/TextField';
 import cities from "../../config/cities"
 import { Button, Grid } from '@material-ui/core';
 import Container from '@material-ui/core/Container';
+import Box from '@material-ui/core/Box';
 
 class SearchWeather extends Component {
     handleSubmit = (event) => {
         event.preventDefault();
-        this.props.searchWeatherBycity(event.target.elements.cityname.value)
+        if(!event.target.elements.cityname.value){
+           alert("fill the city for weather")
+        }else{
+            this.props.searchWeatherBycity(event.target.elements.cityname.value)
+
+        }
     }
 
     render() { 
         return ( 
-            <form onSubmit={this.handleSubmit}>
-                    <Container className="mt-6">
+            <Container className="mt-6">
+            <Box
+                boxShadow={2}
+                bgcolor="background.paper"
+                m={1}
+                p={1}
+            >
+                 <form onSubmit={this.handleSubmit}>
                         <Grid container spacing={2}>
                         <Grid item xs={12} sm={9}>
                             <Autocomplete
@@ -38,13 +50,13 @@ class SearchWeather extends Component {
                         <Grid item xs={12} sm={3}>
                             <Button fullWidth 
                                     type="submit"
-                                    variant='outlined' className="glb-btn" color='primary'>Search</Button>
+                                    style={{background:"#e2ebf0"}}>Search</Button>
                         </Grid>
                     </Grid>
-                    </Container>
             </form>
+            </Box>
+            </Container>
          );
     }
 }
- 
 export default SearchWeather;
