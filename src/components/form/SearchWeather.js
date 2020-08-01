@@ -6,9 +6,6 @@ import { Button, Grid } from '@material-ui/core';
 import Container from '@material-ui/core/Container';
 
 class SearchWeather extends Component {
-    constructor(props) {
-        super(props);
-    }
     handleSubmit = (event) => {
         event.preventDefault();
         this.props.searchWeatherBycity(event.target.elements.cityname.value)

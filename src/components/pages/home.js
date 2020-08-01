@@ -17,19 +17,20 @@ class Home extends Component {
         let data = await response.json();
         this.setState({ weatherData:data,cityName:data.city.name })
     }
-
     componentDidMount(){
         this.weatherByCity(this.state.cityName)
     }
-
     render() { 
-        const {weatherData, ...other } = this.props
         return ( 
             <Fragment >
                 <Appbar />
+                <br/>
+                <br/>
                 <SearchWeather searchWeatherBycity={
                     this.weatherByCity.bind(this)
                 } />
+                <br/>
+                <br/>
                 <WeatherCard  weatherData={this.state.weatherData} city={this.state.cityName} />
             </Fragment>
          );

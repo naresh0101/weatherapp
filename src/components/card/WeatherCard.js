@@ -7,7 +7,6 @@ import Moment from 'react-moment';
 import "./index.css"
 
 export default function WeatherDetails({ weatherData,city }) { 
-
   return (
     <Container>
       <Grid
@@ -17,27 +16,35 @@ export default function WeatherDetails({ weatherData,city }) {
         justify="flex-start"
         alignItems="flex-start"
       >
-        {weatherData?.list?.map((item,i)=>{
+        {weatherData?.list?.map((weather,i)=>{
             return (
-                <Grid item xs={12} sm={6} md={3} key={item.dt}> 
+                <Grid item xs={12} sm={6} md={3} key={weather.dt}> 
                   <Card 
-                      className="card"
-                      style={{padding:"10px",backgroundColor: Math.round(item.main.temp - 273.15) > 16 ? "#ff0000ab":"skyblue" }}
-                  >
-                  <Typography variant="h5" >{city}</Typography> 
-                  <p>
-                     <strong> <Moment format="D MMM YYYY hh:mm a">{item.dt_txt}</Moment></strong>
-                  </p>
-                  <p>
-                      <strong>{item.weather[0].description} </strong>
-                  </p>
-                    <div className="space-between">
-                    <Typography variant="h2" className="white mt-1">
-                              {Math.round(item.main.temp - 273.15)}<span className="temp">&#176;</span>
-                      </Typography>
-                      <img src={`http://openweathermap.org/img/wn/${item.weather[0].icon}@2x.png`} alt="weathericon"></img>
-
-                    </div>
+                      className={Math.round(weather.main.temp - 273.15) > 16 ? "warmCard":"normalcard"}>
+                    <Typography variant="h5" >{city}</Typography> 
+                    <p className="mt-1">
+                      <strong> <Moment format="D MMM YYYY hh:mm a">{weather.dt_txt}</Moment></strong>
+                    </p>
+                    <p>
+                       <strong>{weather.weather[0].description} </strong>
+                    </p>
+                      <div className="space-between">
+                      <Typography variant="h2" className="white mt-1">
+                                {Math.round(weather.main.temp - 273.15)}<span className="temp">&#176;</span>
+                        </Typography>
+                        <img src={`http://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`} alt="weathericon"></img>
+                      </div>
+                      <br/>
+                      <div className="space-between">
+                        <div>
+                          <img className="c-icone" src="./images/humidity.png" alt="humidity" />
+                          <Typography className="text-gray" > {weather.main.humidity}/humidity</Typography>
+                        </div>
+                       <div>
+                          <img className="c-icone" src="./images/wind.png" alt="wind" />
+                          <Typography  className="text-gray"> {weather.wind.speed} km/h</Typography>
+                       </div>
+                      </div>
                   </Card>
                 </Grid>
             )
