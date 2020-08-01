@@ -12,7 +12,7 @@ class Home extends Component {
          }
     }
     async weatherByCity(city){
-        const url = `http://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=85fce8b8faa0016f798cb529a0427f7d`
+        const url = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=85fce8b8faa0016f798cb529a0427f7d`
         let response = await fetch(url);
         let data = await response.json();
         this.setState({ weatherData:data,cityName:data.city.name })
