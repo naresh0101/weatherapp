@@ -1,0 +1,19 @@
+p{
+    margin: 0px !important;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+}
+.space-between{
+    width: 100% !important;
+    display: flex !important;
+    justify-content: space-between !important;
+}
+.space-between h3{
+    margin-top: 10px;
+}
+.white{
+    color: white !important;
+}
+.mt-1{
+    margin-top: 10px !important;
+}
